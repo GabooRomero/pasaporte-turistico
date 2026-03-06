@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+/* 
+  Forzar Dark Mode permanentemente como predeterminado (Base Dark Theme).
+  Invertimos el :root para que por defecto sea oscuro (Slate 950).
+*/
+:root {
+  /* Fondo general: Crema o papel rústico */
+  --background: 40 33% 96%;
+  --foreground: 20 28% 20%;
+
+  /* Tarjetas y contenedores: Crema ligeramente más claro */
+  --card: 40 40% 98%;
+  --card-foreground: 20 28% 20%;
+
+  --popover: 40 40% 98%;
+  --popover-foreground: 20 28% 20%;
+
+  /* Color Primario: Verde Selva / Yerba Mate */
+  --primary: 123 46% 33%;
+  --primary-foreground: 40 33% 98%;
+
+  /* Color Secundario: Terracota / Marrón arcilla */
+  --secondary: 16 35% 45%;
+  --secondary-foreground: 40 33% 98%;
+
+  /* Elementos apagados: Arena oscuro */
+  --muted: 35 25% 85%;
+  --muted-foreground: 25 20% 40%;
+
+  /* Acentos: Ocre / Mostaza */
+  --accent: 45 92% 50%;
+  --accent-foreground: 20 28% 20%;
+
+  --destructive: 0 70% 40%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Bordes y anillos: Marrones suaves */
+  --border: 35 25% 80%;
+  --input: 35 25% 85%;
+  --ring: 123 46% 33%;
+
+  --radius: 1rem;
+}
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0
+    }
+
+    to {
+      height: var(--radix-accordion-content-height)
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height)
+    }
+
+    to {
+      height: 0
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    /* Forzamos crema puro y texto arcilla oscura */
+    @apply bg-[#fdfbf7] text-[#3e2723] antialiased selection:bg-emerald-600/20;
+  }
+}
+
+/* Guardapampa Abstracta como Patrón de Fondo */
+.bg-guardapampa {
+  background-color: #fdfbf7;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0l20 20-20 20L0 20z' fill='%23603B22' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* 
+  Utilidades Premium: Glassmorphism Orgánico (Light Mode)
+*/
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-md border border-stone-200/50 shadow-lg;
+  }
+
+  .glass-panel-heavy {
+    @apply bg-white/90 backdrop-blur-2xl border border-stone-300 shadow-2xl;
+  }
+
+  /* Acentos de resplandor natural (Naturaleza/Magia del Bosque) */
+  .glow-emerald {
+    @apply shadow-[0_0_30px_-5px_theme(colors.emerald.600/0.4)];
+  }
+
+  .glow-amber {
+    @apply shadow-[0_0_30px_-5px_theme(colors.amber.600/0.3)];
+  }
+
+  .glow-teal {
+    @apply shadow-[0_0_30px_-5px_theme(colors.green.700/0.3)];
+  }
+
+  /* Gradientes de texto premium en tonos hojas y tierra */
+  .text-gradient-nature {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-emerald-500;
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-amber-500;
+  }
+}
